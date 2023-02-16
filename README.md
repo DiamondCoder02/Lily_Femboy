@@ -37,6 +37,7 @@ Google form for bug and feature report if you prefer it: [link here](https://for
 ## Credits (Package or API name - command name)
 
 - [Booru - booru](https://www.npmjs.com/package/booru)
+- [Hmfull - ham_tie/hentai](https://www.npmjs.com/package/hmfull)
 - [Waifu.pics - waifu_pics](https://waifu.pics/)
 - Also big thanks for Github Copilot. :3
 - [Discord Dashboard](https://www.npmjs.com/package/discord-dashboard), and [site](https://learnit.assistantscenter.com/)
