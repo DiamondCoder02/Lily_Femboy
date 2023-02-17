@@ -15,6 +15,8 @@ As a special feature if both bot is in one server, the two bot might talk with e
 
 The bot is early in development. Feel free to contribute if you want. I also appriciate every problem report and every help. This bot only works with slash commands.
 
+Admin permissions for bot: [Admin Bot Invite.](https://discord.com/oauth2/authorize?client_id=1073509408627232768&permissions=8&scope=applications.commands%20bot)
+
 Support server: [Discord link](https://discord.gg/DcQS9mNEUh)
 
 Google form for bug and feature report if you prefer it: [link here](https://forms.gle/ebD1edtbir2gDgAn9).
