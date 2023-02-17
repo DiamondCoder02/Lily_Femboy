@@ -14,25 +14,22 @@ module.exports = {
 		bot=client.user
 		try{
 			const channel = client.channels.cache.get(guild.systemChannelId)
-			channel.send(`__**Thank you for inviting me, the ${bot.toString()} bot.**__
-I am a multipurpose bot. My main goal is to make the server more lively. ^^
-I also provide moderation, games and __I'm still being developed__.
-I'm strictly wholesome, but if you want want other than that, you can invite my twin. >w<
-Or just ask me nicely and I will keep everything clean here. Or I will try. ^^'
+			channel.send(`__**Let me, the ${bot.toString()} bot, corrupt this server X3.**__
+I assume my twin made you invite me. Hope you won't mind the lewdness. ^^
+Now the better question is, who will 
 
+__I'm still being developed__
 All of my commands works with slash commands. More info about them at https://imgur.com/a/dStRp6Y. 
 \nTo edit my server config please go to: http://femboy.redirectme.net/`
 			)
 		} catch {
 			client.users.fetch(guild.ownerId).then(user => {
-				user.send(`__**Thank you for inviting me, the ${bot.toString()} bot.**__
-I am a multipurpose bot. My main goal is to make the server more lively. ^^
-I also provide moderation, games and __I'm still being developed__.
-I'm strictly wholesome, but if you want want other than that, you can invite my twin. >w<
-Or just ask me nicely and I will keep everything clean here. Or I will try. ^^'
+				user.send(`__**Let me, the ${bot.toString()} bot, corrupt this server X3.**__
+I assume my twin made you invite me. Hope you won't mind the lewdness. ^^
 
-All commands works with slash commands. More info about them at https://imgur.com/a/dStRp6Y. 
-\nTo edit the server config please go to: http://femboy.redirectme.net/`
+__I'm still being developed__
+All of my commands works with slash commands. More info about them at https://imgur.com/a/dStRp6Y. 
+\nTo edit my server config please go to: http://femboy.redirectme.net/`
 				)
 			}).catch(err => { console.log("guildCreate Error:", err) })
 		}
