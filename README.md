@@ -1,12 +1,14 @@
-# Femboy_uwu **Whole bot rework soon.**
+# Femboy_uwu - Lily (Lewd bot)
 
-![Banner, made by Nyaneko](https://i.imgur.com/bYYjIZC.png)
+Banner soon...
 
 ## A bit of explanation
 
-I recently got the idea how and where I want this project to continue. Due to uni and to finalize everything, it will take time. Luckly many things won't change, but this project will get weird and different soon.
+I recently got the idea how and where I want this project to continue. Due to uni and to finalize everything, it will take time. Luckly many things won't change.
 
-<u>The website, nsfw will be the most effected. I might split the bot into two, but that means...</u>
+Bot will have names and I wanna give them a nice personality.
+
+The website, nsfw will be the most effected. I might split the bot into two, but that means...
 
 1. one part of the bot will be sfw only, while having all the features.
 2. second bot will have mostly nsfw. A lot of nsfw :3

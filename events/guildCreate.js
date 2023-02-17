@@ -16,7 +16,7 @@ module.exports = {
 			const channel = client.channels.cache.get(guild.systemChannelId)
 			channel.send(`__**Let me, the ${bot.toString()} bot, corrupt this server X3.**__
 I assume my twin made you invite me. Hope you won't mind the lewdness. ^^
-Now the better question is, who will 
+Now the better question is, who will be dominating here ( •̀ ω •́ )y
 
 __I'm still being developed__
 All of my commands works with slash commands. More info about them at https://imgur.com/a/dStRp6Y. 
@@ -26,6 +26,7 @@ All of my commands works with slash commands. More info about them at https://im
 			client.users.fetch(guild.ownerId).then(user => {
 				user.send(`__**Let me, the ${bot.toString()} bot, corrupt this server X3.**__
 I assume my twin made you invite me. Hope you won't mind the lewdness. ^^
+Now the better question is, who will be dominating ( •̀ ω •́ )y
 
 __I'm still being developed__
 All of my commands works with slash commands. More info about them at https://imgur.com/a/dStRp6Y. 
