@@ -1,6 +1,6 @@
 # Femboy_uwu - Lily (Lewd bot)
 
-Banner soon...
+![Lily Banner, made by NyanekoNNK](https://user-images.githubusercontent.com/53056204/227460948-e895c847-1347-4180-a866-31db997b4b7c.png)
 
 ## A bit of explanation
 
