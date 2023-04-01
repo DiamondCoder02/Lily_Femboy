@@ -1,27 +1,32 @@
 {
-  "name": "femboy_uwu",
+  "name": "lily_femboy",
   "version": "0.1.0_twins",
   "description": "nsfw femboy bot",
   "main": "index.js",
   "scripts": {
-    "start": "index.js",
-    "test": "echo \"Error: no test specified\" && exit 1"
+      "start": "node index.js",
+      "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/DiamondPRO02/Femboy_uwu.git"
+    "url": "git+https://github.com/DiamondPRO02/Lily_Femboy.git"
   },
   "author": "DiamondCoder",
     "license": "MIT",
   "bugs": {
-    "url": "https://github.com/DiamondPRO02/Femboy_uwu/issues"
+    "url": "https://github.com/DiamondPRO02/Lily_Femboy/issues"
   },
-  "homepage": "https://github.com/DiamondPRO02/Femboy_uwu#readme",
+  "homepage": "https://github.com/DiamondPRO02/Lily_Femboy#readme",
   "dependencies": {
+    "better-logging": "^5.0.0",
     "booru": "^2.6.3",
+    "chalk": "^4.1.2",
     "discord.js": "^14.7.1",
     "dotenv": "^16.0.1",
     "enmap": "^5.9.5",
     "hmfull": "^2.4.2"
+  },
+  "devDependencies": {
+    "eslint": "^8.37.0"
   }
 }
