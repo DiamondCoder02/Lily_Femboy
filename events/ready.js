@@ -8,10 +8,12 @@ module.exports = {
 	name: "ready",
 	once: true,
 	execute(arg, client) {
-		client.user.setActivity("Nya~ Develop me Senpai~");
+		client.user.setActivity("Bot remake: 0%");
 		setInterval(() => {
+			/* A
 			let status = SetAct[Math.floor(Math.random() * SetAct.length)];
-			client.user.setActivity(status);
+			client.user.setActivity(status); */
+			client.user.setActivity("Bot remake: 0%");
 		}, 10800000);
 
 		// eslint-disable-next-line no-console
@@ -28,11 +30,7 @@ module.exports = {
 DebugLevel: ${debug_level},
 Ready: <t:${Math.floor(client.readyTimestamp / 1000)}:f> 
 That was: <t:${Math.floor(client.readyTimestamp / 1000)}:R>`);
-		try {
-			const channel = client.channels.cache.get(botStatusChannelId);
-			channel.send({ embeds: [embed] });
-		} catch {
-			console.log("No status channel ID given or found. Continuing...");
-		}
+		const channel = client.channels.cache.get(botStatusChannelId);
+		channel.send({ embeds: [embed] });
 	}
 };

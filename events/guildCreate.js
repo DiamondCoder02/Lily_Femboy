@@ -1,9 +1,9 @@
 const { EmbedBuilder } = require("discord.js");
-require("dotenv").config(); let botStatusChannelId = process.env.botstatus_channelid; let debug_level = process.env.debug_level;
+require("dotenv").config(); let botStatusChannelId = process.env.botstatus_channelid;
 module.exports = {
 	name: "guildCreate",
 	async execute(guild, client) {
-		console.log(`[${new Date().toLocaleString("hu-HU")}] Bot joined guild: ${guild.name}`);
+		console.log(`Bot joined guild: ${guild.name}`);
 		const embed = new EmbedBuilder()
 			.setColor("#FFFF00")
 			.setTitle("Bot joined a guild!")

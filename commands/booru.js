@@ -35,8 +35,8 @@ module.exports = {
 		if (interaction.options.getNumber("repeat")) { amount = Number(interaction.options.getNumber("repeat")) }
 		for (let a = 0; a < amount; a++) {
 			await booruSearch(sites, tags, a, true).catch(err => {
-				if (err instanceof BooruError) { a=amount; console.error("-"+err) }
-				else { console.error(err); a=amount ; return interaction.reply({ content: "Something went wrong. Make sure you wrote the tag correctly by seperating them with spaces." })}
+				if (err instanceof BooruError) { a=amount }
+				else { a=amount ; return interaction.reply({ content: "Something went wrong. Make sure you wrote the tag correctly by seperating them with spaces." })}
 			});
 			await wait(2000);
 		}
