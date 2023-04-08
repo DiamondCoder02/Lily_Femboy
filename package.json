@@ -4,15 +4,15 @@
   "description": "nsfw femboy bot",
   "main": "index.js",
   "scripts": {
-      "start": "node index.js",
-      "test": "echo \"Error: no test specified\" && exit 1"
+    "start": "node index.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {
     "type": "git",
     "url": "git+https://github.com/DiamondPRO02/Lily_Femboy.git"
   },
   "author": "DiamondCoder",
-    "license": "MIT",
+  "license": "MIT",
   "bugs": {
     "url": "https://github.com/DiamondPRO02/Lily_Femboy/issues"
   },
@@ -24,7 +24,7 @@
     "discord.js": "^14.7.1",
     "dotenv": "^16.0.1",
     "enmap": "^5.9.5",
-    "hmfull": "^2.4.2"
+    "hmfull": "^2.4.3"
   },
   "devDependencies": {
     "eslint": "^8.37.0"

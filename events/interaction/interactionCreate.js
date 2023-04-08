@@ -1,3 +1,4 @@
+/* eslint-disable no-console */
 const { Collection, InteractionType, ChannelType } = require("discord.js");
 const cooldowns = new Collection();
 require("dotenv").config(); let b_o_Id = process.env.botOwnerId; let debug_level = process.env.debug_level;
@@ -39,7 +40,8 @@ module.exports = {
 				try {
 					await command.execute(interaction, client);
 				} catch (error) {
-					console.error(error);
+					console.error("CommandExecutionError: ", error);
+					console.line("CommandExecutionError: ", error);
 					try {await interaction.reply({ content: "There was an error while executing this command!", ephemeral: true })}
 					catch {await interaction.followUp({ content: "There was an error while executing this command!", ephemeral: true })}
 					return;
@@ -81,9 +83,9 @@ module.exports = {
 					// Const subcommand = interaction.options.getSubcommand();
 					// Console.log(subcommand);
 				} catch (error) {
-					console.log(error.name);
+					console.log(error);
 				}
 			}
-		} catch (error) { console.error(error) }
+		} catch (error) { console.error("interactionCreateError: ", error) }
 	}
 };

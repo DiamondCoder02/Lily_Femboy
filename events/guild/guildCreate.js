@@ -32,7 +32,7 @@ __I'm still being developed__
 All of my commands works with slash commands. More info about them at https://imgur.com/a/dStRp6Y. 
 \nTo edit my server config please go to: http://femboy.redirectme.net/`
 				);
-			}).catch(err => { console.log("guildCreate Error:", err) });
+			}).catch(err => { console.error("guildCreate Error:", err) });
 		}
 	}
 };

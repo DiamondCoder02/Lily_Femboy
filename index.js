@@ -16,13 +16,6 @@ require("better-logging")(console, {
 	}
 });
 console.logLevel = Number(debug_level);
-/* All the log levels:
-debug: 4 - log: 3 - info: 2 - warn: 1 - error: 0 - line: 1 - turn off all logging: -1
-
-default: 3
-console.log("foo"); // Logged to console & saved in 1594897100267.log
-console.debug("foo"); // Won't log to console, but will be saved in 1594897100267.log
-*/
 
 const fs = require("fs"), { Client, Collection, GatewayIntentBits, Partials } = require("discord.js");
 const client = new Client({
@@ -59,7 +52,6 @@ const client = new Client({
 	]
 });
 
-client.commands = new Collection();
 // Enmap - server side settings
 const Enmap = require("enmap");
 client.settings = new Enmap({
@@ -75,21 +67,28 @@ client.settings = new Enmap({
 	}
 });
 
-let commandFuck = [];
+client.commands = new Collection();
+let forDeploy = [];
 // Command file reader
 const commandFiles = fs.readdirSync("./commands").filter(file => file.endsWith(".js"));
 for (const file of commandFiles) {
 	const command_files = require(`./commands/${file}`);
 	client.commands.set(command_files.data.name, command_files);
-	commandFuck.push(command_files);
+	forDeploy.push(command_files.data.toJSON());
 }
 
 // Event handler
-const eventFiles = fs.readdirSync("./events").filter(file => file.endsWith(".js"));
-for (const file of eventFiles) {
-	const event = require(`./events/${file}`);
-	if (event.once) {client.once(event.name, (...args) => event.execute(...args, client))}
-	else {client.on(event.name, (...args) => event.execute(...args, client))}
+let eventFolders = fs.readdirSync("./events");
+for (const folder of eventFolders) {
+	fs.readdir(`./events/${folder}`, (err, files) => {
+		if (err) {throw err}
+		for (const file of files) {
+			if (!file.endsWith(".js")) {continue}
+			const event = require(`./events/${folder}/${file}`);
+			if (event.once) {client.once(event.name, (...args) => event.execute(...args, client))}
+			else {client.on(event.name, (...args) => event.execute(...args, client))}
+		}
+	});
 }
 
 // Bot token
@@ -97,16 +96,16 @@ let token = process.env.token;
 let deploying = process.env.deployAskOnStart;
 if (deploying == "true") {
 	const deployCommands = require("./deploy-commands.js");
-	deployCommands.execute(client, token, commandFuck);
+	deployCommands.execute(client, token, forDeploy);
 } else {
 	client.login(token);
 }
 
 // Error handler
-client.on("error", (e) => console.error(e));
-client.on("warn", (e) => console.warn(e));
-process.on("unhandledRejection", error => console.error("-----\nUncaught Rejection:\n-----\n", error));
-process.on("uncaughtException", error => console.error("-----\nUncaught Exception:\n-----\n", error));
+client.on("error", (e) => console.error("indexError: ", e));
+client.on("warn", (e) => console.warn("indexWarn: ", e));
+process.on("unhandledRejection", error => console.error("----- Uncaught Rejection: -----\n", error));
+process.on("uncaughtException", error => console.error("----- Uncaught Exception: -----\n", error));
 if (debug_level >= 4) {
-	client.on("debug", (e) => console.debug(e));
+	client.on("debug", (e) => console.debug("indexDebug: ", e));
 }

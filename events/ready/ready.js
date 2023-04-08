@@ -1,5 +1,5 @@
 const { EmbedBuilder } = require("discord.js");
-const botStat = require("../botConfigs/bot_private.json", "utf8"); const SetAct = botStat.botStatus;
+const botStat = require("../../botConfigs/bot_private.json", "utf8"); const SetAct = botStat.botStatus;
 require("dotenv").config();
 let stopPassword = process.env.stop_password;
 let debug_level = process.env.debug_level;
