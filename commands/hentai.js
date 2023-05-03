@@ -1,4 +1,5 @@
 const { SlashCommandBuilder, EmbedBuilder } = require("@discordjs/builders");
+const { ChannelType } = require("discord.js");
 const wait = require("node:timers/promises").setTimeout;
 const { HMtai } = require("hmfull");
 module.exports = {
@@ -60,7 +61,7 @@ module.exports = {
 		),
 	async execute(interaction) {
 		let amount = 1;
-		if (!interaction.channel.nsfw) { return interaction.reply("Sorry, this is a Not Safe For Work command!") }
+		if (!interaction.channel.nsfw && interaction.channel.type === ChannelType.GuildText) { return interaction.reply("Sorry, this is a Not Safe For Work command!") }
 		if (interaction.options.getNumber("repeat")) { amount = Number(interaction.options.getNumber("repeat")) }
 		const options = interaction.options.getString("options");
 		const embed = new EmbedBuilder()
