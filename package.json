@@ -21,7 +21,7 @@
     "better-logging": "^5.0.0",
     "booru": "^2.6.3",
     "chalk": "^4.1.2",
-    "discord.js": "^14.7.1",
+    "discord.js": "^14.9.0",
     "dotenv": "^16.0.1",
     "enmap": "^5.9.5",
     "hmfull": "^2.4.3"

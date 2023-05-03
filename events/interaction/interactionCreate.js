@@ -1,4 +1,3 @@
-/* eslint-disable no-console */
 const { Collection, InteractionType, ChannelType } = require("discord.js");
 const cooldowns = new Collection();
 require("dotenv").config(); let b_o_Id = process.env.botOwnerId; let debug_level = process.env.debug_level;
@@ -8,10 +7,9 @@ module.exports = {
 		// Console.log(interaction)
 		try {
 			const i = interaction;
-			if (i.type === InteractionType.ApplicationCommand) {
+			if (i.isCommand()) {
 				const command = client.commands.get(interaction.commandName);
-				if (!command) {return}
-				if (command.guildOnly && interaction.guildId === null) { return interaction.reply("(* ￣︿￣) Executing this command in DMs is disabled. Please use this command on a server.")}
+				if (!command) {return interaction.reply({ content: "What?, How?" })}
 				if (interaction.user.id !== b_o_Id) {
 					// Cooldown
 					if (!cooldowns.has(interaction.commandName)) {cooldowns.set(interaction.commandName, new Collection())}
@@ -30,9 +28,9 @@ module.exports = {
 					// Guild permission check
 					if (command.guildOnly) {
 						if (command.permissions) {
-							let r = false;
-							if (interaction.guild && interaction.channel.permissionsFor(interaction.member).has(command.permissions)) { r=true }
-							if (!r || interaction.channel.type === ChannelType.DM) { return interaction.reply({ content: "You do not have the required permissions to execute this command. => `"+command.permissions+"`", ephemeral: true })}
+							let isCommandDM = false;
+							if (interaction.guild && interaction.channel.permissionsFor(interaction.member).has(command.permissions)) { isCommandDM=true }
+							if (!isCommandDM || interaction.channel.type === ChannelType.DM) { return interaction.reply({ content: "You do not have the required permissions to execute this command. => `"+command.permissions+"`", ephemeral: true })}
 						}
 					}
 				}
@@ -45,6 +43,14 @@ module.exports = {
 					try {await interaction.reply({ content: "There was an error while executing this command!", ephemeral: true })}
 					catch {await interaction.followUp({ content: "There was an error while executing this command!", ephemeral: true })}
 					return;
+				}
+			}
+			if (i.isButton()) {
+				// This is useful: console.log(i.message);
+				if (i.client.user.id === client.user.id && i.user.id === i.message.interaction.user.id && i.customId === "delete") {
+					i.message.delete();
+				} else if (i.user.id !== i.message.interaction.user.id && i.client.user.id === client.user.id && i.customId === "delete") {
+					await i.reply({ content: "Sorry, you are not the original executer of this command so you cannot delete this.", ephemeral: true });
 				}
 			}
 			if (debug_level >= 1) {

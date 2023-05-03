@@ -104,8 +104,8 @@ if (deploying == "true") {
 // Error handler
 client.on("error", (e) => console.error("indexError: ", e));
 client.on("warn", (e) => console.warn("indexWarn: ", e));
-process.on("unhandledRejection", error => console.error("----- Uncaught Rejection: -----\n", error));
-process.on("uncaughtException", error => console.error("----- Uncaught Exception: -----\n", error));
+process.on("unhandledRejection", error => console.line("----- Uncaught Rejection: -----\n", error));
+process.on("uncaughtException", error => console.line("----- Uncaught Exception: -----\n", error));
 if (debug_level >= 4) {
 	client.on("debug", (e) => console.debug("indexDebug: ", e));
 }
