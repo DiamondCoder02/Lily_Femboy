@@ -1,10 +1,10 @@
 const { SlashCommandBuilder, EmbedBuilder } = require("@discordjs/builders");
-const { ChannelType } = require("discord.js");
 const wait = require("node:timers/promises").setTimeout;
 const { NekoBot, NekoLove, Nekos } = require("hmfull");
 module.exports = {
 	cooldown: 60,
 	data: new SlashCommandBuilder()
+		.setNSFW(true)
 		.setName("nekos")
 		.setDescription("Lewd/hentai images about nekos")
 		.addStringOption(option => option.setName("options").setDescription("Not Required")
@@ -28,7 +28,6 @@ module.exports = {
 		.addNumberOption(option => option.setName("repeat").setDescription("Amount: If you want to get more then one at a time.").setMinValue(1).setMaxValue(10)),
 	async execute(interaction) {
 		let amount = 1;
-		if (!interaction.channel.nsfw && interaction.channel.type === ChannelType.GuildText) { return interaction.reply("Sorry, this is a Not Safe For Work command!") }
 		if (interaction.options.getNumber("repeat")) { amount = Number(interaction.options.getNumber("repeat")) }
 		const options = interaction.options.getString("options");
 		const embed = new EmbedBuilder()

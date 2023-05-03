@@ -18,6 +18,8 @@ module.exports = {
 I assume my twin made you invite me. Hope you won't mind the lewdness. ^^
 Now the better question is, who will be dominating here ( •̀ ω •́ )y
 
+**Warning: make sure to enable Age-restricted channel or the bot won't show the commands!**
+
 __I'm still being developed__
 All of my commands works with slash commands. More info about them at https://imgur.com/a/dStRp6Y. 
 \nTo edit my server config please go to: http://femboy.redirectme.net/`
@@ -27,6 +29,8 @@ All of my commands works with slash commands. More info about them at https://im
 				user.send(`__**Let me, the ${bot.toString()} bot, corrupt this server X3.**__
 I assume my twin made you invite me. Hope you won't mind the lewdness. ^^
 Now the better question is, who will be dominating ( •̀ ω •́ )y
+
+**Warning: make sure to enable Age-restricted channel or the bot won't show the commands!**
 
 __I'm still being developed__
 All of my commands works with slash commands. More info about them at https://imgur.com/a/dStRp6Y. 

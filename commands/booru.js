@@ -1,9 +1,10 @@
-const { SlashCommandBuilder } = require("@discordjs/builders"), { EmbedBuilder, ActionRowBuilder, ButtonBuilder, ButtonStyle, ChannelType } = require("discord.js");
+const { SlashCommandBuilder } = require("@discordjs/builders"), { EmbedBuilder, ActionRowBuilder, ButtonBuilder, ButtonStyle } = require("discord.js");
 const wait = require("node:timers/promises").setTimeout;
 const Booru = require("booru"), { BooruError } = require("booru");
 module.exports = {
 	cooldown: 15,
 	data: new SlashCommandBuilder()
+		.setNSFW(true)
 		.setName("booru")
 		.setDescription("Search imageboards for a picture")
 		.addStringOption(option => option.setName("sites").setDescription("Sites to search")
@@ -27,7 +28,6 @@ module.exports = {
 	async execute(interaction) {
 		const sites = interaction.options.getString("sites").trim();
 		let tags, amount = 1, r = "-";
-		if (!interaction.channel.nsfw && interaction.channel.type === ChannelType.GuildText) { return interaction.reply({ content: "Sorry, this is a Not Safe For Work command! Channel is not set to age-restricted." }) }
 		if (!interaction.options.getString("tags") && (sites == ("gelbooru") || sites == ("rule34") || sites == ("safebooru") || sites == ("tbib") || sites == ("xbooru") || sites == ("derpibooru") || sites == ("realbooru"))) { return interaction.reply({ content: "Please give me a tag to find a random picture." }) }
 		else if (!interaction.options.getString("tags")) { tags = "" }
 		else { tags = interaction.options.getString("tags").trim().split(" ") }
@@ -50,9 +50,6 @@ module.exports = {
 			else if (posts.first.rating == "q") { r = "Questionable" }
 			else if (posts.first.rating == "e") { r = "Explicit" }
 			else if (posts.first.rating == "u") { r = "Unrated" }
-			if (!interaction.channel.nsfw && interaction.channel.type === ChannelType.GuildText && (posts.first.rating == "e" || posts.first.rating == "q")) {
-				return interaction.reply({ content: "Sorry this is an explixit or questionable picture that got somehow sent here. This is wholesome only chat :3" });
-			}
 			const embed = new EmbedBuilder()
 				.setTimestamp()
 				.setColor([160, 32, 240])

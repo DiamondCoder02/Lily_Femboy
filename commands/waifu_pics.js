@@ -1,10 +1,10 @@
-const { SlashCommandBuilder } = require("@discordjs/builders");
-const { EmbedBuilder, ChannelType } = require("discord.js");
+const { SlashCommandBuilder, EmbedBuilder } = require("@discordjs/builders");
 const fetch = require("node-fetch");
 const wait = require("node:timers/promises").setTimeout;
 module.exports = {
 	cooldown: 10,
 	data: new SlashCommandBuilder()
+		.setNSFW(true)
 		.setName("waifu_pics")
 		.setDescription("Pictures from waifu.pics")
 		.addStringOption(option => option.setName("category").setDescription("NSFW category")
@@ -19,7 +19,6 @@ module.exports = {
 	async execute(interaction) {
 		let amount = 1;
 		const category = interaction.options.getString("category");
-		if (!interaction.channel.nsfw && interaction.channel.type === ChannelType.GuildText) { return interaction.reply("Sorry, this is a Not Safe For Work command!") }
 		if (interaction.options.getNumber("repeat")) { amount = Number(interaction.options.getNumber("repeat")) }
 		for (let a = 0; a < amount; a++) {
 			let response = await fetch(`https://api.waifu.pics/nsfw/${category}`);

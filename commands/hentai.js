@@ -1,10 +1,10 @@
 const { SlashCommandBuilder, EmbedBuilder } = require("@discordjs/builders");
-const { ChannelType } = require("discord.js");
 const wait = require("node:timers/promises").setTimeout;
 const { HMtai } = require("hmfull");
 module.exports = {
 	cooldown: 60,
 	data: new SlashCommandBuilder()
+		.setNSFW(true)
 		.setName("hentai")
 		.setDescription("HENTAI!")
 		.addSubcommand(subcommand => subcommand
@@ -61,7 +61,6 @@ module.exports = {
 		),
 	async execute(interaction) {
 		let amount = 1;
-		if (!interaction.channel.nsfw && interaction.channel.type === ChannelType.GuildText) { return interaction.reply("Sorry, this is a Not Safe For Work command!") }
 		if (interaction.options.getNumber("repeat")) { amount = Number(interaction.options.getNumber("repeat")) }
 		let options = interaction.options.getString("options");
 		const embed = new EmbedBuilder()
