@@ -63,7 +63,7 @@ module.exports = {
 		let amount = 1;
 		if (!interaction.channel.nsfw && interaction.channel.type === ChannelType.GuildText) { return interaction.reply("Sorry, this is a Not Safe For Work command!") }
 		if (interaction.options.getNumber("repeat")) { amount = Number(interaction.options.getNumber("repeat")) }
-		const options = interaction.options.getString("options");
+		let options = interaction.options.getString("options");
 		const embed = new EmbedBuilder()
 			.setTimestamp()
 			.setTitle(options)
@@ -104,8 +104,9 @@ module.exports = {
 			case "neko": link = (await HMtai.nsfw.nsfwNeko()).url; break;
 			case "mobilewallpaper": link = (await HMtai.nsfw.nsfwMobileWallpaper()).url; break;
 			case "thigh": link = (await HMtai.nsfw.zettaiRyouiki()).url; break;
-			default: link = (await HMtai.nsfw.boobjob()).url; break;
+			default: link = (await HMtai.nsfw.hentai()).url; break;
 			}
+			if (options === null){ options = interaction.options.getSubcommand() }
 			embed.setFooter({ text: `${options} - ${a + 1}/${amount}` }).setImage(link);
 			try { await interaction.reply({ embeds: [embed] }) }
 			catch {
