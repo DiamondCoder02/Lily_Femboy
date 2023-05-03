@@ -1,5 +1,4 @@
-const { EmbedBuilder } = require("discord.js");
-const botStat = require("../../botConfigs/bot_private.json", "utf8"); const SetAct = botStat.botStatus;
+const { EmbedBuilder, ActivityType } = require("discord.js");
 require("dotenv").config();
 let stopPassword = process.env.stop_password;
 let debug_level = process.env.debug_level;
@@ -8,12 +7,9 @@ module.exports = {
 	name: "ready",
 	once: true,
 	execute(arg, client) {
-		client.user.setActivity("Bot remake: 0%");
+		client.user.setActivity(client.guilds.cache.size+" servers currently", { type: ActivityType.Watching });
 		setInterval(() => {
-			/* A
-			let status = SetAct[Math.floor(Math.random() * SetAct.length)];
-			client.user.setActivity(status); */
-			client.user.setActivity("Bot remake: 0%");
+			client.user.setActivity(client.guilds.cache.size+" servers currently", { type: ActivityType.Watching });
 		}, 10800000);
 
 		// eslint-disable-next-line no-console
