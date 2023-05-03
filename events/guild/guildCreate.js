@@ -11,7 +11,7 @@ module.exports = {
 		const channel = client.channels.cache.get(botStatusChannelId);
 		channel.send({ embeds: [embed] });
 
-		let bot=client.user;
+		let bot = client.user;
 		try {
 			const channel = client.channels.cache.get(guild.systemChannelId);
 			channel.send(`__**Let me, the ${bot.toString()} bot, corrupt this server X3.**__

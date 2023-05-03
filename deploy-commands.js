@@ -1,7 +1,7 @@
 const { REST } = require("@discordjs/rest"), { Routes } = require("discord-api-types/v9");
 const wait = require("node:timers/promises").setTimeout;
 require("dotenv").config();
-let GuildID =process.env.GuildID, cId = process.env.ClientID;
+let GuildID = process.env.GuildID, cId = process.env.ClientID;
 console.clear();
 
 module.exports = {
@@ -22,7 +22,7 @@ module.exports = {
 		ask("Ask number 1-5", (answer) => {
 			if (answer == 1) {
 				rest.put(Routes.applicationGuildCommands(cId, GuildID), { body: forDeploy })
-					.then(() => console.log("Registered all commands in the specific guild => "+GuildID));
+					.then(() => console.log("Registered all commands in the specific guild => " + GuildID));
 			} else if (answer == 2) {
 				rest.put(Routes.applicationCommands(cId), { body: forDeploy })
 					.then(() => console.log("Registered all commands globally"));
@@ -34,7 +34,7 @@ module.exports = {
 							const deleteUrl = `${Routes.applicationGuildCommands(cId, GuildID)}/${command.id}`;
 							promises.push(rest.delete(deleteUrl));
 						}
-						Promise.all(promises).then(() => console.log("Deleted all commands in the specific guild => "+GuildID));
+						Promise.all(promises).then(() => console.log("Deleted all commands in the specific guild => " + GuildID));
 					});
 			} else if (answer == 4) {
 				rest.get(Routes.applicationCommands(cId))
@@ -70,7 +70,7 @@ module.exports = {
 							const deleteUrl = `${Routes.applicationGuildCommands(cId, GuildID)}/${command.id}`;
 							promises.push(rest.delete(deleteUrl));
 						}
-						Promise.all(promises).then(() => console.log("Deleted all commands in the specific guild => "+GuildID),
+						Promise.all(promises).then(() => console.log("Deleted all commands in the specific guild => " + GuildID),
 							rest.put(Routes.applicationCommands(cId), { body: forDeploy })
 								.then(() => console.log("Registered all commands globally"))
 						);

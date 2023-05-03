@@ -27,8 +27,8 @@ module.exports = {
 			const img = JSON.parse(data);
 			const embed = new EmbedBuilder()
 				.setImage(img.url)
-				.setFooter({ text: `${category} - ${a+1}/${amount}` })
-				.setColor([ 160, 32, 240 ]);
+				.setFooter({ text: `${category} - ${a + 1}/${amount}` })
+				.setColor([160, 32, 240]);
 			try { await interaction.followUp({ embeds: [embed] }) }
 			catch { interaction.reply({ embeds: [embed] }) }
 			await wait(1000);

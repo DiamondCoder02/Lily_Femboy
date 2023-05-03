@@ -4,8 +4,8 @@ require("dotenv").config();
 let debug_level = process.env.debug_level;
 const chalk = require("chalk"), today = new Date(), yyyy = today.getFullYear();
 let mm = today.getMonth() + 1, dd = today.getDate(), hh = today.getHours(), min = today.getMinutes(), sec = today.getSeconds(); // Months start at 0!
-if (dd < 10) {dd = "0" + dd} if (mm < 10) {mm = "0" + mm} if (hh < 10) {hh = "0" + hh} if (min < 10) {min = "0" + min} if (sec < 10) {sec = "0" + sec}
-const formattedToday = yyyy+"-"+mm+"-"+dd+"_"+hh+"-"+min+"-"+sec;
+if (dd < 10) { dd = "0" + dd } if (mm < 10) { mm = "0" + mm } if (hh < 10) { hh = "0" + hh } if (min < 10) { min = "0" + min } if (sec < 10) { sec = "0" + sec }
+const formattedToday = yyyy + "-" + mm + "-" + dd + "_" + hh + "-" + min + "-" + sec;
 
 require("better-logging")(console, {
 	format: ctx => `${ctx.date}${ctx.time} ${ctx.type} ${ctx.msg}`,
@@ -81,12 +81,12 @@ for (const file of commandFiles) {
 let eventFolders = fs.readdirSync("./events");
 for (const folder of eventFolders) {
 	fs.readdir(`./events/${folder}`, (err, files) => {
-		if (err) {throw err}
+		if (err) { throw err }
 		for (const file of files) {
-			if (!file.endsWith(".js")) {continue}
+			if (!file.endsWith(".js")) { continue }
 			const event = require(`./events/${folder}/${file}`);
-			if (event.once) {client.once(event.name, (...args) => event.execute(...args, client))}
-			else {client.on(event.name, (...args) => event.execute(...args, client))}
+			if (event.once) { client.once(event.name, (...args) => event.execute(...args, client)) }
+			else { client.on(event.name, (...args) => event.execute(...args, client)) }
 		}
 	});
 }

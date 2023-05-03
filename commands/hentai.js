@@ -60,13 +60,13 @@ module.exports = {
 		),
 	async execute(interaction) {
 		let amount = 1;
-		if (!interaction.channel.nsfw) { return interaction.reply("Sorry, this is a Not Safe For Work command!")}
+		if (!interaction.channel.nsfw) { return interaction.reply("Sorry, this is a Not Safe For Work command!") }
 		if (interaction.options.getNumber("repeat")) { amount = Number(interaction.options.getNumber("repeat")) }
 		const options = interaction.options.getString("options");
 		const embed = new EmbedBuilder()
 			.setTimestamp()
 			.setTitle(options)
-			.setColor([ 160, 32, 240 ]);
+			.setColor([160, 32, 240]);
 		for (let a = 0; a < amount; a++) {
 			let link;
 			switch (options) {
@@ -105,7 +105,7 @@ module.exports = {
 			case "thigh": link = (await HMtai.nsfw.zettaiRyouiki()).url; break;
 			default: link = (await HMtai.nsfw.boobjob()).url; break;
 			}
-			embed.setFooter({ text: `${options} - ${a+1}/${amount}` }).setImage(link);
+			embed.setFooter({ text: `${options} - ${a + 1}/${amount}` }).setImage(link);
 			try { await interaction.reply({ embeds: [embed] }) }
 			catch {
 				await wait(1000);

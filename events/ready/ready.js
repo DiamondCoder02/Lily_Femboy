@@ -18,10 +18,10 @@ module.exports = {
 
 		// eslint-disable-next-line no-console
 		console.log("\n -- Logged in as: " + client.user.tag
-            + "\n\t -- Client_ID: " + client.user.id
-            + "\n\t -- Password: " + stopPassword
-            + "\n\t -- Debug_level: " + debug_level
-            + "\n\t -- Ready at: " + client.readyAt);
+			+ "\n\t -- Client_ID: " + client.user.id
+			+ "\n\t -- Password: " + stopPassword
+			+ "\n\t -- Debug_level: " + debug_level
+			+ "\n\t -- Ready at: " + client.readyAt);
 
 		const embed = new EmbedBuilder()
 			.setColor("#FFFF00")
