@@ -26,6 +26,7 @@ module.exports = {
 		.addBooleanOption(option => option.setName("detailed_desc").setDescription("If you want to get image details for them"))
 		.addNumberOption(option => option.setName("repeat").setDescription("Amount: If you want to get more then one at a time.").setMinValue(1).setMaxValue(10)),
 	async execute(interaction) {
+		if (!interaction.channel.nsfw && interaction.channel.type === ChannelType.GuildText) { return interaction.reply({ content: "Sorry, this is a Not Safe For Work command! Channel is not set to age-restricted." }) }
 		const sites = interaction.options.getString("sites").trim();
 		let tags, amount = 1, r = "-";
 		if (!interaction.options.getString("tags") && (sites == ("gelbooru") || sites == ("rule34") || sites == ("safebooru") || sites == ("tbib") || sites == ("xbooru") || sites == ("derpibooru") || sites == ("realbooru"))) { return interaction.reply({ content: "Please give me a tag to find a random picture." }) }
