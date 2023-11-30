@@ -5,9 +5,9 @@
 ## A bit of explanation
 
 Hi and welcome to the bots development page. Currently I work alone while doing university, so development is slow. Hope you enjoy the bot and have fun with it.
-The development can be checked on the [projects page](https://github.com/users/DiamondPRO02/projects/2).
+The development can be checked on the [projects page](https://github.com/users/DiamondCoder02/projects/2).
 
-This is a lewd bot, so it will spice the server up. If you would rather have everything else(, maybe even nsfw protection) check: [Lulu_Femboy sfw](https://github.com/DiamondPRO02/Lulu_Femboy).
+This is a lewd bot, so it will spice the server up. If you would rather have everything else(, maybe even nsfw protection) check: [Lulu_Femboy sfw](https://github.com/DiamondCoder02/Lulu_Femboy).
 
 As a special feature if both bot is in one server, the two bot might talk with each other, but I will see how hard would it be to implement it.
 
