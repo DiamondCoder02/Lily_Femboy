@@ -24,7 +24,11 @@ module.exports = {
 		)
 		.addStringOption(option => option.setName("tags").setDescription("Tags to search for (separate multiple with space)"))
 		.addBooleanOption(option => option.setName("detailed_desc").setDescription("If you want to get image details for them"))
-		.addNumberOption(option => option.setName("repeat").setDescription("Amount: If you want to get more then one at a time.").setMinValue(1).setMaxValue(10)),
+		.addNumberOption(option => option.setName("repeat").setDescription("Amount: If you want to get more than one at a time.").setMinValue(1).setMaxValue(10))
+		.addSubcommand(subcommand => subcommand
+			.setName("auto")
+			.setDescription("Repeats forever")
+		),
 	async execute(interaction) {
 		if (!interaction.channel.nsfw && interaction.channel.type === ChannelType.GuildText) { return interaction.reply({ content: "Sorry, this is a Not Safe For Work command! Channel is not set to age-restricted." }) }
 		const sites = interaction.options.getString("sites").trim();
@@ -34,13 +38,25 @@ module.exports = {
 		else { tags = interaction.options.getString("tags").trim().split(" ") }
 		if (interaction.options.getString("tags") && (sites == "hypnohub" || sites == "danbooru" || sites == "paheal")) { return interaction.reply({ content: "Please don't use tags with this site" }) }
 		if (interaction.options.getNumber("repeat")) { amount = Number(interaction.options.getNumber("repeat")) }
-		for (let a = 0; a < amount; a++) {
-			await booruSearch(sites, tags, a, true).catch(err => {
-				if (err instanceof BooruError) { a = amount }
-				else { a = amount; return interaction.reply({ content: "Something went wrong. Make sure you wrote the tag correctly by seperating them with spaces." }) }
-			});
-			await wait(2000);
-		}
+		
+		// Check if the "auto" subcommand is used
+		const isAuto = interaction.options.getSubcommand() === "auto";
+
+		do {
+			for (let a = 0; a < amount; a++) {
+				await booruSearch(sites, tags, a, true).catch(err => {
+					if (err instanceof BooruError) { a = amount }
+					else { a = amount; return interaction.reply({ content: "Something went wrong. Make sure you wrote the tag correctly by separating them with spaces." }) }
+				});
+				await wait(2000);
+			}
+
+			// If "auto" is used, wait for a moment before the next iteration
+			if (isAuto) {
+				await wait(5000); // Adjust the time interval as needed
+			}
+		} while (isAuto);
+
 		async function booruSearch(sites, tags, a, random = true) {
 			let limit = 1;
 			const posts = await Booru.search(sites, tags, { limit, random });
@@ -80,7 +96,6 @@ module.exports = {
 				await embed.setImage(posts[0].fileUrl);
 				try { await interaction.followUp({ embeds: [embed], components: [buttons] }) }
 				catch { await interaction.reply({ embeds: [embed], components: [buttons] }) }
-			}
 		}
 	}
 };
