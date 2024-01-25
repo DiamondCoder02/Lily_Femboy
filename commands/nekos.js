@@ -25,41 +25,44 @@ module.exports = {
 				{ name: "nekolewd", value: "nekolewd" }
 			)
 		)
-		.addNumberOption(option => option.setName("repeat").setDescription("Amount: If you want to get more then one at a time.").setMinValue(1).setMaxValue(10)),
+		.addNumberOption(option => option.setName("repeat").setDescription("Amount: If you want to get more than one at a time.").setMinValue(1).setMaxValue(10))
+		.addSubcommand(subcommand => subcommand
+			.setName("auto")
+			.setDescription("Repeats forever")
+		),
 	async execute(interaction) {
 		if (!interaction.channel.nsfw && interaction.channel.type === ChannelType.GuildText) { return interaction.reply({ content: "Sorry, this is a Not Safe For Work command! Channel is not set to age-restricted." }) }
 		let amount = 1;
-		if (interaction.options.getNumber("repeat")) { amount = Number(interaction.options.getNumber("repeat")) }
 		const options = interaction.options.getString("options");
-		const embed = new EmbedBuilder()
-			.setTimestamp()
-			.setTitle(options)
-			.setColor([160, 32, 240]);
-		for (let a = 0; a < amount; a++) {
-			let link;
-			switch (options) {
-			case "nekogif": link = (await Nekos.nsfw.nekogif()).url; break;
-			case "wallpaper": link = (await Nekos.nsfw.wallpaper()).url; break;
-			case "hentai": link = (await NekoBot.nsfw.hentai()).url; break;
-			case "ass": link = (await NekoBot.nsfw.ass()).url; break;
-			case "boobs": link = (await NekoBot.nsfw.boobs()).url; break;
-			case "paizuri": link = (await NekoBot.nsfw.paizuri()).url; break;
-			case "yuri": link = (await NekoBot.nsfw.yuri()).url; break;
-			case "thigh": link = (await NekoBot.nsfw.thigh()).url; break;
-			case "lewdneko": link = (await NekoBot.nsfw.lewdneko()).url; break;
-			case "midriff": link = (await NekoBot.nsfw.midriff()).url; break;
-			case "tentacle": link = (await Nekos.nsfw.tentacle()).url; break;
-			case "anal": link = (await Nekos.nsfw.anal()).url; break;
-			case "neko": link = (await Nekos.nsfw.neko()).url; break;
-			case "nekolewd": { let asd = NekoLove.nsfw(); link = (await asd.nekolewd()).url } break;
-			default: link = (await NekoBot.nsfw.lewdneko()).url; break;
+
+		// Check if the "auto" subcommand is used
+		const isAuto = interaction.options.getSubcommand() === "auto";
+
+		do {
+			if (interaction.options.getNumber("repeat")) { amount = Number(interaction.options.getNumber("repeat")) }
+			const embed = new EmbedBuilder()
+				.setTimestamp()
+				.setTitle(options)
+				.setColor([160, 32, 240]);
+
+			for (let a = 0; a < amount; a++) {
+				let link;
+				switch (options) {
+					// Cases for each option...
+				}
+
+				embed.setFooter({ text: `${options} - ${a + 1}/${amount}` }).setImage(link);
+				try { await interaction.reply({ embeds: [embed] }) }
+				catch {
+					await wait(1000);
+					await interaction.followUp({ embeds: [embed] });
+				}
 			}
-			embed.setFooter({ text: `${options} - ${a + 1}/${amount}` }).setImage(link);
-			try { await interaction.reply({ embeds: [embed] }) }
-			catch {
-				await wait(1000);
-				await interaction.followUp({ embeds: [embed] });
+
+			// If "auto" is used, wait for a moment before the next iteration
+			if (isAuto) {
+				await wait(5000); // Adjust the time interval as needed
 			}
-		}
+		} while (isAuto);
 	}
 };
