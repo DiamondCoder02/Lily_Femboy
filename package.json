@@ -5,6 +5,7 @@
   "main": "index.js",
   "scripts": {
     "start": "node index.js",
+    "deploy": "node deploy-commands.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {
@@ -28,5 +29,8 @@
   },
   "devDependencies": {
     "eslint": "^8.37.0"
+  },
+  "allowScripts": {
+    "better-sqlite3@9.6.0": true
   }
 }

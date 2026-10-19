@@ -6,6 +6,12 @@ console.clear();
 
 module.exports = {
 	execute(client, token, forDeploy) {
+		console.log(GuildID)
+		wait(3000)
+		if (GuildID == null || cId == null) {
+			console.log("LOL, dead env")
+			return wait(3000)
+		}
 		const rest = new REST({ version: "9" }).setToken(token);
 		// Ask user for a number between 1 and 5 and execute the corresponding function
 		const ask = (question, callback) => {
